@@ -1,0 +1,38 @@
+<div class="headerAdmin">
+  <div class="alinharImagem">
+    <a [routerLink]="['inicio']">
+      <img src="../../../assets/images/logo.png" width="100" alt="" />
+    </a>
+    <a (click)="logoff()">
+      <i class="fas fa-sign-out-alt fa-2x icon" title="Deslogar"></i>
+    </a>
+  </div>
+</div>
+
+<div class="navbar">
+  <div class="navbarWeb">
+    <div class="home">
+      <a [routerLink]="['inicio']">HOME</a>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">
+        CADASTROS
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="centralizarDrop">
+        <div class="dropdown-content">
+          <a [routerLink]="['/admin/equipes']"
+            >EQUIPES <i class="fas iconDrop fa-plus-circle"></i
+          ></a>
+          <a [routerLink]="['/admin/atletas']"
+            >ATLETAS <i class="fas iconDrop fa-plus-circle"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+    <div class="home">
+      <a [routerLink]="['/admin/cartao']">CARTEIRINHAS </a>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

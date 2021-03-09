@@ -1,0 +1,182 @@
+<div class="container">
+  <div class="equipes">
+    <h1 class="tituloEquipes">
+      <img
+        src="../../../../../assets/images/logo.png"
+        width="60"
+        alt="Logo LIDI"
+      />Equipes
+    </h1>
+    <div class="contats">
+      <div>
+        <p>
+          <a class="plus" (click)="cadastrar_update_equipe()"
+            ><i class="fas fa-plus fa-1x"></i
+          ></a>
+          Adicionar Equipes
+        </p>
+      </div>
+      <form [formGroup]="formBuscar" class="formBuscar">
+        <input
+          type="text"
+          formControlName="busca"
+          placeholder="Procurar Equipe  &#xf002;"
+          type="search"
+        />
+      </form>
+    </div>
+    <table>
+      <tr class="trGerenciar">
+        <th class="nomeEquipe">Nome da Equipe</th>
+        <th class="cnpjEquipe">CNPJ</th>
+        <th class="empresaEquipe">Empresa</th>
+        <th class="responsavelEquipe">Responsável</th>
+        <th class="telefoneEquipe">Telefone</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <tr *ngFor="let equipe of equipes" class="trEquipes">
+        <td class="nomeEquipe">{{ equipe?.nome }}</td>
+        <td class="cnpjEquipe">
+          {{ equipe?.cnpj === 'null' ? "Não definido" : equipe?.cnpj }}
+        </td>
+        <td class="empresaEquipe">{{ equipe?.empresa }}</td>
+        <td class="responsavelEquipe">{{ equipe?.responsavel }}</td>
+        <td class="telefoneEquipe">{{ equipe?.telefone_responsavel }}</td>
+        <td>
+          <a (click)="cadastrar_update_equipe(equipe?.id)"
+            ><i class="fas fa-pen" style="color: blue" title="Editar Equipe"></i
+          ></a>
+        </td>
+        <td>
+          <a (click)="deletarEquipe(equipe?.id)"
+            ><i
+              class="fas fa-times fa-lg"
+              title="Apagar Equipe"
+              style="color: red"
+            ></i
+          ></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal-equipe" #modalEquipe>
+  <div class="campos">
+    <a (click)="cancelar()" title="Fechar" class="fechar"
+      ><i class="fas fa-times iconFechar"></i
+    ></a>
+    <h1 class="tituloModal">{{ editar }} Equipe</h1>
+    <hr />
+    <form [formGroup]="formEquipe" novalidate>
+      <div class="content">
+        <h4>Dados da Equipe</h4>
+        <div class="grid1">
+          <div class="foto">
+            <img #foto />
+            <input type="file" accept="image/*" (change)="onFoto($event)" />
+          </div>
+          <div>
+            <app-input
+              errorMensagem="*campo obrigatório"
+              label="Nome da Equipe:*"
+            >
+              <input type="text" formControlName="nome" />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*CNPJ inválido" label="CNPJ:">
+              <input
+                type="text"
+                [textMask]="{ mask: mask.cnpj }"
+                formControlName="cnpj"
+              />
+            </app-input>
+          </div>
+          <div>
+            <select
+              *ngIf="clubes"
+              formControlName="id_clube"
+              class="select-css"
+            >
+              <option value="null">Clube</option>
+              <option *ngFor="let clube of clubes" value="{{ clube?.id }}">
+                {{ clube?.nome }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Empresa:*">
+              <input type="text" formControlName="empresa" />
+            </app-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <h4>Dados do responsável</h4>
+        <div class="grid2">
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Nome:*">
+              <input type="text" formControlName="responsavel" />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="CPF:*">
+              <input
+                type="text"
+                [textMask]="{ mask: mask.cpf }"
+                formControlName="cpf_responsavel"
+              />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Telefone:*">
+              <input
+                type="text"
+                [textMask]="{ mask: mask.telefone }"
+                formControlName="telefone_responsavel"
+              />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Email:*">
+              <input type="text" formControlName="email_responsavel" />
+            </app-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <h4>Comissão técnica</h4>
+        <div class="grid3">
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Técnico:*">
+              <input type="text" formControlName="tecnico" />
+            </app-input>
+          </div>
+          <div>
+            <app-input
+              errorMensagem="*campo obrigatório"
+              label="Auxíliar Técnico:"
+            >
+              <input type="text" formControlName="auxTecnico" />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Massagista:">
+              <input type="text" formControlName="massagista" />
+            </app-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttonsModal">
+        <button (click)="salvarEquipe()" class="btnSalvar">SALVAR</button>
+        <button (click)="cancelar()" class="btnCancelar">CANCELAR</button>
+      </div>
+    </form>
+  </div>
+</div>

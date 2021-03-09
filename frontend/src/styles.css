@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@font-face {
+  font-family: "delirium";
+  src: url(./assets/fonts/FTYDELIRIUMNCV.ttf);
+}
+
+@font-face {
+  font-family: "highSchool";
+  src: url(./assets/fonts/HighSchoolUSASans.ttf);
+}
+
+@font-face {
+  font-family: "uolText";
+  src: url(./assets/fonts/uol-text-regular.otf);
+}
+
+@font-face {
+  font-family: "whitney";
+  src: url(./assets/fonts/whitneymedium.otf);
+}
+
+:root {
+  --corPrincipal: #2e105aef;
+  --corFonte: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  outline: none;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+.centralizar {
+  display: block;
+  text-align: -webkit-center;
+}
+
+.tituloSumulaPartida {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "highSchool";
+}
+
+.tituloSumulaPartida p {
+  color: red;
+  text-decoration: dashed;
+}
+
+input {
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 5px;
+}
+
+input[type="date"] {
+  background: #fff
+    url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+    97% 50% no-repeat;
+  border: none;
+  padding-left: 0.25rem;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 8rem;
+  resize: vertical;
+  border: none;
+  padding-left: 0.25rem;
+}
+
+@media (max-width: 769px) {
+  textarea {
+    resize: none;
+  }
+}

@@ -1,0 +1,52 @@
+<div class="login">
+  <div class="container" *ngIf="!isLoggedIn()">
+    <form [formGroup]="loginForm" class="form">
+      <div class="header">
+        <img src="../../../assets/images/logo.png" width="120" alt="" />
+        <h1>Autenticação</h1>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Login"
+          formControlName="email"
+          id="name"
+          name="name"
+          tabindex="1"
+        />
+        <label for="name" class="form-label">Email</label>
+        <span
+          *ngIf="
+            !loginForm.get('email').valid &&
+            (loginForm.get('email').dirty || loginForm.get('email').touched)
+          "
+          >*campo obrigatório</span
+        >
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Senha"
+          formControlName="senha"
+          id="senha"
+          name="senha"
+          tabindex="2"
+        />
+        <label for="senha" class="form-label">Senha</label>
+        <span
+          *ngIf="
+            !loginForm.get('senha').valid &&
+            (loginForm.get('senha').dirty || loginForm.get('senha').touched)
+          "
+          >*campo obrigatório</span
+        >
+      </div>
+      <div class="botao">
+        <button type="submit" (click)="Logar()"><a>ENTRAR</a></button>
+      </div>
+    </form>
+  </div>
+</div>

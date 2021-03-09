@@ -1,0 +1,280 @@
+<div class="container">
+  <div class="atletas">
+    <h1 class="tituloAtletas">
+      <img
+        src="../../../../assets/images/logo.png"
+        width="60"
+        alt="Logo LIDI"
+      />Atletas
+    </h1>
+    <div class="contats">
+      <p>
+        <a class="plus" (click)="cadastrar_update()">
+          <i class="fas fa-plus fa-1x"></i>
+        </a>
+        Adicionar Atletas
+      </p>
+      <form [formGroup]="formBuscar" class="formBuscar">
+        <input
+          type="text"
+          formControlName="busca"
+          placeholder="Procurar Atleta  &#xf002;"
+          type="search"
+        />
+      </form>
+    </div>
+    <table>
+      <tr class="trGerenciar">
+        <th class="nomeAtleta">Nome do Atleta</th>
+        <th class="atletaCpf">CPF</th>
+        <th class="atletaEmail">E-Mail</th>
+        <th class="atletaCelular">Celular</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <tr *ngFor="let atleta of atletas" class="trAtletas">
+        <td class="nomeAtleta">{{ atleta?.nome }}</td>
+        <td class="atletaCpf">{{ atleta?.cpf }}</td>
+        <td class="atletaEmail">{{ atleta?.email }}</td>
+        <td class="atletaCelular">{{ atleta?.celular }}</td>
+        <td class="edit">
+          <a (click)="cadastrar_update(atleta?.id)"
+            ><i class="fas fa-pen" style="color: blue" title="Editar Equipe"></i
+          ></a>
+        </td>
+        <td class="delete">
+          <a (click)="deletar(atleta?.id)"
+            ><i
+              class="fas fa-times fa-lg"
+              title="Apagar Equipe"
+              style="color: red"
+            ></i
+          ></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal-atleta" #modal>
+  <div class="campos">
+    <a (click)="cancelarModal()" title="Fechar" class="fechar">
+      <i class="fas fa-times iconFechar"></i>
+    </a>
+
+    <h1 class="tituloModal">{{ tituloModal }} Atleta</h1>
+    <hr />
+
+    <form [formGroup]="form">
+      <div class="foto">
+        <img #foto />
+        <input type="file" accept="image/*" (change)="onFoto($event)" />
+        <button class="btnFoto" (click)="mostraModal()">Tirar Foto</button>
+      </div>
+
+      <div class="content">
+        <h4 class="titulo">Dados Pessoais</h4>
+        <div class="grid1">
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Nome:*">
+              <input type="text" formControlName="nome" />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="RG:*">
+              <input
+                type="text"
+                [textMask]="{ mask: mask.rg }"
+                formControlName="rg"
+              />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="CPF:*">
+              <input
+                type="text"
+                [textMask]="{ mask: mask.cpf }"
+                formControlName="cpf"
+              />
+            </app-input>
+          </div>
+          <div>
+            <app-input
+              errorMensagem="*campo obrigatório"
+              label="Data de Nascimento:*"
+            >
+              <input type="date" formControlName="data_nasc" />
+            </app-input>
+          </div>
+
+          <div>
+            <select formControlName="id_categoria" class="select-css">
+              <option value="null" selected>Categoria</option>
+              <option
+                *ngFor="let catigoria of catigorias"
+                value="{{ catigoria?.id }}"
+              >
+                {{ catigoria?.nome }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <select
+              *ngIf="clubes"
+              formControlName="id_clube"
+              class="select-css"
+            >
+              <option value="null">Clube</option>
+              <option *ngFor="let clube of clubes" value="{{ clube?.id }}">
+                {{ clube?.nome }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <h4 class="titulo">Endereço do atleta</h4>
+        <div class="grid2">
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Endereço:*">
+              <input type="text" formControlName="endereco" />
+            </app-input>
+          </div>
+          <div>
+            <select *ngIf="estados" formControlName="estado" class="select-css">
+              <option value="" disabled>Estado</option>
+              <option *ngFor="let estado of estados" value="{{ estado?.nome }}">
+                {{ estado?.nome }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <select *ngIf="cidades" formControlName="cidade" class="select-css">
+              <option value="" disabled>Cidade</option>
+              <option
+                *ngFor="let cidade of listaCidades"
+                value="{{ cidade?.nome }}"
+              >
+                {{ cidade?.nome }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <h4 class="titulo">Contatos do atleta</h4>
+        <div class="grid3">
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="E-mail:*">
+              <input type="text" formControlName="email" />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*numero inválido" label="Telefone:">
+              <input
+                type="text"
+                [textMask]="{ mask: mask.telefone }"
+                formControlName="telefone"
+              />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Celular:*">
+              <input
+                type="text"
+                [textMask]="{ mask: mask.celular }"
+                formControlName="celular"
+              />
+            </app-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <h4 class="titulo">Informações dos responsáveis</h4>
+        <div class="grid4">
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Nome da Mãe:*">
+              <input type="text" formControlName="nome_mae" />
+            </app-input>
+          </div>
+          <div>
+            <app-input errorMensagem="*campo obrigatório" label="Nome do Pai:*">
+              <input type="text" formControlName="nome_pai" />
+            </app-input>
+          </div>
+          <div>
+            <app-input
+              errorMensagem="*campo obrigatório"
+              label="Nome do Responsável:"
+            >
+              <input type="text" formControlName="nome_responsavel" />
+            </app-input>
+          </div>
+          <div>
+            <app-input
+              errorMensagem="*campo obrigatório"
+              label="CPF do Responsável:"
+            >
+              <input
+                type="text"
+                formControlName="cpf_responsavel"
+                [textMask]="{ mask: mask.cpf }"
+              />
+            </app-input>
+          </div>
+
+          <div>
+            <app-input
+              errorMensagem="*número invalido"
+              label="Telefone do Responsável:"
+            >
+              <input
+                type="text"
+                [textMask]="{ mask: mask.telefone }"
+                formControlName="telefone_responsavel"
+              />
+            </app-input>
+          </div>
+
+          <div>
+            <app-input
+              errorMensagem="*campo obrigatório"
+              label="Celular do Responsável"
+            >
+              <input
+                type="text"
+                [textMask]="{ mask: mask.celular }"
+                formControlName="celular_responsavel"
+              />
+            </app-input>
+          </div>
+        </div>
+      </div>
+
+    </form>
+    <div class="buttonsModal">
+      <button (click)="salvar()" class="btnSalvar">
+        SALVAR
+      </button>
+      <button (click)="cancelarModal()" class="btnCancelar">
+        CANCELAR
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="foto" #camera>
+  <div>
+    <a (click)="cancelarFoto()" title="Fechar" class="fecharFoto">
+      <i class="fas fa-times iconFechar"></i>
+    </a>
+    <video #video autoplay></video>
+    <button (click)="tirarFoto()">
+      <i class="fas fa-camera"></i>
+    </button>
+  </div>
+  <canvas class="canvas" #myCanvas></canvas>
+</div>

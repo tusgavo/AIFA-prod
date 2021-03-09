@@ -1,0 +1,176 @@
+<div class="bg">
+  <div class="alinhamentoGerenciar">
+    <div class="bgWhite">
+      <article>
+        <div>
+          <h1 class="tituloGerenciamento">
+            <img
+              src="../../../../assets/images/logo.png"
+              width="60"
+              alt="Logo LIDI"
+            />
+            Gerenciamento de Carteirinhas
+          </h1>
+          <form [formGroup]="formBuscar" class="filtros">
+            <select
+              formControlName="buscaClube"
+              *ngIf="clubes"
+              class="select-equipe"
+            >
+              <option value="0">Todos</option>
+              <option *ngFor="let clube of clubes" value="{{ clube?.id }}">
+                {{ clube?.nome }}
+              </option>
+            </select>
+            <div>
+              <input
+                formControlName="busca"
+                placeholder="Procurar Atleta  &#xf002;"
+                type="search"
+                class="inputBusca"
+              />
+            </div>
+            <div class="filtrosDatas">
+              <label class="labelFiltroDatas">Emissão:</label>
+              <div style="display: flex">
+                <select
+                  formControlName="buscaEmissaoMes"
+                  class="select-emissao"
+                >
+                  <option value="0" selected>Mês</option>
+                  <option value=null>Não definido</option>
+                  <option value="1">Janeiro</option>
+                  <option value="2">Fevereiro</option>
+                  <option value="3">Março</option>
+                  <option value="4">Abril</option>
+                  <option value="5">Maio</option>
+                  <option value="6">Junho</option>
+                  <option value="7">Julho</option>
+                  <option value="8">Agosta</option>
+                  <option value="9">Setenbro</option>
+                  <option value="10">Outubro</option>
+                  <option value="11">Novembro</option>
+                  <option value="12">Dezembro</option>
+                </select>
+                <select
+                  formControlName="buscaEmissaoAno"
+                  class="select-emissao"
+                >
+                  <option value="0" selected>Ano</option>
+                  <option value=null>Não definido</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                </select>
+              </div>
+              <label class="labelFiltroDatas">Validade:</label>
+              <div style="display: flex">
+                <select
+                  formControlName="buscaValidadeMes"
+                  class="select-validade"
+                >
+                  <option value="0" selected>Mês</option>
+                  <option value=null>Não definido</option>
+                  <option value="1">Janeiro</option>
+                  <option value="2">Fevereiro</option>
+                  <option value="3">Março</option>
+                  <option value="4">Abril</option>
+                  <option value="5">Maio</option>
+                  <option value="6">Junho</option>
+                  <option value="7">Julho</option>
+                  <option value="8">Agosta</option>
+                  <option value="9">Setenbro</option>
+                  <option value="10">Outubro</option>
+                  <option value="11">Novembro</option>
+                  <option value="12">Dezembro</option>
+                </select>
+                <select
+                  formControlName="buscaValidadeAno"
+                  class="select-validade"
+                >
+                <option value="0" selected>Ano</option>
+                <option value=null>Não definido</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <div class="alinharTabela">
+            <table>
+              <tr class="trGerenciar">
+                <th><input (click)="checarTodos(Todos)" #Todos type="checkbox" /></th>
+                <th>Atleta</th>
+                <th class="clube">Clube</th>
+                <th class="rg">RG</th>
+                <th class="cpf">CPF</th>
+                <th class="mae">Mãe</th>
+                <th class="pai">Pai</th>
+                <th class="nascimento">Nasc.</th>
+                <th>Emissão</th>
+                <th>Validade</th>
+              </tr>
+              <tr *ngFor="let atleta of atletas" class="trEquipes">
+                <td><input (click)="chequeAtleta(cheque, atleta)" #cheque type="checkbox" /></td>
+                <td>{{ atleta?.nome }}</td>
+                <td class="clube">{{ atleta?.clube || "Não definido" }}</td>
+                <td class="rg">{{ atleta?.rg }}</td>
+                <td class="cpf">{{ atleta?.cpf }}</td>
+                <td class="mae">{{ atleta?.mae || "Não informado" }}</td>
+                <td class="pai">{{ atleta?.pai || "Não informado" }}</td>
+                <td class="nascimento">
+                  {{ atleta?.nasc | date: "dd/MM/yyyy" }}
+                </td>
+                <td>
+                  {{ (atleta?.emissao | date: "dd/MM/yyyy") || "Não definido" }}
+                </td>
+                <td>
+                  {{
+                    (atleta?.validade | date: "dd/MM/yyyy") || "Não definido"
+                  }}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="footer">
+            <form [formGroup]="data">
+              <div>
+                <app-input errorMensagem="*campo obrigatório" label="Data de Emissão:">
+                  <input type="date" formControlName="emissao">
+                </app-input>
+              </div>
+              <div>
+                <app-input errorMensagem="*campo obrigatório" label="Data de Validade:">
+                  <input type="date" formControlName="validade">
+                </app-input>
+              </div>
+              <!-- <p class="dataEmissao">Data de Emissão: <input type="date" formControlName="emissao"></p>
+              <p class="dataEmissao">Data de Validade: <input type="date" formControlName="validade"></p> -->
+            </form>
+            <div class="botoes">
+              <a (click)="imprimirCarteirinhas()" class="btnImprimir">IMPRIMIR</a>
+              <button class="btnCancelar" (click)="cancelar()">CANCELAR</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

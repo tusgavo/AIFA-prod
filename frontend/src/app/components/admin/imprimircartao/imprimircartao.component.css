@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.janela {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.janela header {
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: royalblue;
+}
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+main {
+  display: flex;
+  justify-content: flex-start;
+  text-align: end;
+}
+.foto {
+  border: 1px solid #000;
+  margin-left: 5px;
+  margin-top: 5px;
+  width: 110px;
+  height: 150px;
+  border-radius: 10px;
+}
+.foto img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.dados {
+  margin-left: 5px;
+  background-image: url('../../../../assets/images/bgCateirinha.png');
+  background-size: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+.dados p {
+  font-size: 10px;
+  margin-top: 5px;
+  color: #333;
+  text-align: left;
+}
+.dados p span {
+  text-transform: uppercase;
+}
+.dados div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  align-items: start;
+}

@@ -1,0 +1,42 @@
+.label-float {
+  position: relative;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.label-float div {
+  border-radius: 5px;
+  font-size: 16px;
+  border: 2px solid var(--corPrincipal);
+}
+
+.label-float label {
+  pointer-events: none;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 0;
+  left: 0;
+  color: var(--corPrincipal);
+}
+
+span {
+  display: block;
+  text-align: left;
+  color: red;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.invalid div {
+  border: 2px solid red;
+}
+
+.invalid label {
+  color: red;
+}
+
+@media (max-width: 769px) {
+}
