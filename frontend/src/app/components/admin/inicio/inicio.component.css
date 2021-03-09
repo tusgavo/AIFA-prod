@@ -1,4 +1,4 @@
-.navInicio ul ul {
+/* .navInicio ul ul {
   display: none;
 }
 
@@ -13,7 +13,6 @@
 }
 
 .navInicio ul {
-  box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.74);
   padding: 0 20px;
   background-color: var(--corPrincipal);
   border-radius: 10px;
@@ -35,8 +34,10 @@
 .navInicio ul li a {
   display: block;
   padding: 15px 20px !important;
+  font-family: "whitney";
+  letter-spacing: 0.04em;
+  font-size: 18px;
   color: #fff;
-  /* font-weight: bold; */
   text-decoration: none;
 }
 
@@ -81,4 +82,15 @@
 .iconDrop {
   margin-left: 3px;
   font-size: 18px;
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
+h1 {
+  display: flex;
+  justify-content: center;
+  height: 15vh;
+  align-items: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  color: rgb(22, 22, 22);
 }

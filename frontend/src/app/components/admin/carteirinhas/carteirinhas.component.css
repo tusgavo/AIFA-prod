@@ -11,7 +11,7 @@
 
 .bgWhite {
   background-color: white;
-  width: 85%;
+  width: 95%;
   padding: 0 0 20px;
   border-radius: 7px;
 }
@@ -35,7 +35,6 @@ article {
 .tituloGerenciamento img {
   margin-right: 3px;
 }
-
 
 .filtros {
   display: flex;
@@ -67,32 +66,33 @@ article {
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
+  cursor: pointer;
 }
-.select-css::-ms-expand {
+.select-equipe::-ms-expand {
   display: none;
 }
-.select-css:hover {
+.select-equipe:hover {
   border-color: #888;
 }
-.select-css:focus {
+.select-equipe:focus {
   border-color: #aaa;
   color: #222;
   outline: none;
 }
 
-.select-css option {
+.select-equipe option {
   font-weight: normal;
 }
 
-*[dir="rtl"] .select-css,
-:root:lang(ar) .select-css,
-:root:lang(iw) .select-css {
+*[dir="rtl"] .select-equipe,
+:root:lang(ar) .select-equipe,
+:root:lang(iw) .select-equipe {
   background-position: left 0.7em top 50%, 0 0;
   padding: 0.6em 0.8em 0.5em 1.4em;
 }
 
-.select-css:disabled:hover,
-.select-css[aria-disabled="true"] {
+.select-equipe:disabled:hover,
+.select-equipe[aria-disabled="true"] {
   border-color: #aaa;
 }
 

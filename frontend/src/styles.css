@@ -21,7 +21,7 @@
 }
 
 :root {
-  --corPrincipal: #2e105aef;
+  --corPrincipal: rgb(182, 0, 0);
   --corFonte: white;
 }
 
