@@ -1,0 +1,29 @@
+{
+  "name": "backend-knex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "nodemon",
+    "pm2": "pm2 start ./src/index.js --name fut"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.12",
+    "moment": "^2.29.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.16",
+    "pm2": "^4.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
